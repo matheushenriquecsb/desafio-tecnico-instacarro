@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CharacterCardList from "../../components/CharacterList/CharacterList";
 import Favorites from "../../components/Favorites/Favorites";
 import { Header } from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -15,6 +16,7 @@ export const Home = () => {
   const [characterData, setCharacterData] = useState<Character[]>([]);
   const [isSearchInput, setIsSearchInput] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setIsSearchInput(true);
@@ -23,9 +25,9 @@ export const Home = () => {
 
   const fetchDataInput = async (character: string) => {
     setLoading(true);
-    const data = await fetchCharacterByName(character);
+    const res = await fetchCharacterByName(character);
     setLoading(false);
-    setCharacterData(data.results);
+    setCharacterData(res.results);
   };
 
   useEffect(() => {
@@ -46,7 +48,38 @@ export const Home = () => {
         <Favorites />
       </div>
       {loading && <p>Loading...</p>}
-      <div></div>
+      <div>
+        {isSearchInput && (
+          <CharacterCardList
+            characters={characterData.map((e) => ({
+              id: e.id,
+              name: e.name,
+              description: e.description,
+              image: e.thumbnail.path + "." + e.thumbnail.extension,
+            }))}
+          />
+        )}
+        {!loading && !isSearchInput && !showFavorites && (
+          <CharacterCardList
+            characters={characterData.map((e) => ({
+              id: e.id,
+              name: e.name,
+              description: e.description,
+              image: e.thumbnail.path + "." + e.thumbnail.extension,
+            }))}
+          />
+        )}
+        {!loading && !isSearchInput && !showFavorites && (
+          <CharacterCardList
+            characters={characterData.map((e) => ({
+              id: e.id,
+              name: e.name,
+              description: e.description,
+              image: e.thumbnail.path + "." + e.thumbnail.extension,
+            }))}
+          />
+        )}
+      </div>
     </div>
   );
 };
