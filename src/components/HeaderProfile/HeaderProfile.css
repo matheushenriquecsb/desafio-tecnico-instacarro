@@ -8,7 +8,7 @@
 .header-background {
   background-image: url("src/assets/background-header.png");
   background-size: cover;
-  width: 100%;
+  width: 180%;
   padding: 40px;
   display: flex;
   justify-content: center;
@@ -19,14 +19,14 @@
   color: white;
   font-size: 24px;
   text-transform: uppercase;
-  text-align: center;
+  margin-top: 80px;
   font-weight: bold;
 }
 
 .header-content {
   background-color: white;
   border-radius: 30px;
-  padding: 10px 50px;
+  padding: 30px 50px;
   display: flex;
   align-items: center;
   width: 80%;

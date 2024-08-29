@@ -43,6 +43,9 @@
   font-size: 14px;
   color: black;
   text-align: left;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .favorite-button {
