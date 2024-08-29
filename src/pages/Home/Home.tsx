@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CharacterCardList from "../../components/CharacterList/CharacterList";
 import Favorites from "../../components/Favorites/Favorites";
+import FavoriteCharacters from "../../components/FavoritesCard/FavoritesCard";
 import { Header } from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import {
+  FavoritesProvider,
+  useFavorites,
+} from "../../context/favoritesContext";
 import {
   fetchCharacterByName,
   fetchCharactersList,
@@ -18,6 +23,8 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setIsSearchInput(true);
     fetchDataInput(character);
@@ -29,6 +36,12 @@ export const Home = () => {
     setLoading(false);
     setCharacterData(res.results);
   };
+
+  const handleMore = useCallback(async () => {
+    const offset = characterData.length;
+    const res = await fetchCharactersList(offset);
+    setCharacterData([...characterData, ...res.results]);
+  }, [characterData]);
 
   useEffect(() => {
     const fetchDataLists = async () => {
@@ -45,18 +58,24 @@ export const Home = () => {
       <div className="form-input">
         <Header />
         <SearchBar setCharacter={setCharacter} onSearch={handleSubmit} />
-        <Favorites />
+        <Favorites
+          totalCharacters={characterData.length}
+          showOnlyFavorites={showFavorites}
+          onToggleFavorites={() => setShowFavorites((prev) => !prev)}
+        />
       </div>
       {loading && <p>Loading...</p>}
       <div>
-        {isSearchInput && (
+        {isSearchInput && !showFavorites && (
           <CharacterCardList
             characters={characterData.map((e) => ({
               id: e.id,
               name: e.name,
               description: e.description,
               image: e.thumbnail.path + "." + e.thumbnail.extension,
+              isFavorite: isFavorite(e.id),
             }))}
+            onToggleFavorite={toggleFavorite}
           />
         )}
         {!loading && !isSearchInput && !showFavorites && (
@@ -66,7 +85,9 @@ export const Home = () => {
               name: e.name,
               description: e.description,
               image: e.thumbnail.path + "." + e.thumbnail.extension,
+              isFavorite: isFavorite(e.id),
             }))}
+            onToggleFavorite={toggleFavorite}
           />
         )}
         {!loading && !isSearchInput && !showFavorites && (
@@ -76,12 +97,30 @@ export const Home = () => {
               name: e.name,
               description: e.description,
               image: e.thumbnail.path + "." + e.thumbnail.extension,
+              isFavorite: isFavorite(e.id),
             }))}
+            onToggleFavorite={toggleFavorite}
           />
+        )}
+        {showFavorites && (
+          <FavoriteCharacters
+            characters={characterData}
+            favorites={favorites}
+            onFavoriteToggle={toggleFavorite}
+          />
+        )}
+        {!loading && !isSearchInput && !showFavorites && (
+          <button onClick={handleMore}>More</button>
         )}
       </div>
     </div>
   );
 };
 
-export default Home;
+const SearchWithProvider = () => (
+  <FavoritesProvider>
+    <Home />
+  </FavoritesProvider>
+);
+
+export default SearchWithProvider;

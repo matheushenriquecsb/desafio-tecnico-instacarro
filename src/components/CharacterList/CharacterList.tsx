@@ -2,7 +2,7 @@ import { CharacterList, ICharacterCard } from "../../types/components";
 import CharacterCard from "../CharacterCard/CharacterCard";
 import "./CharacterList.css";
 
-const CharacterCardList = ({ characters }: CharacterList) => {
+const CharacterCardList = ({ characters, onToggleFavorite }: CharacterList) => {
   return (
     <div className="character-card-list">
       {characters.map((e: ICharacterCard) => (
@@ -12,6 +12,8 @@ const CharacterCardList = ({ characters }: CharacterList) => {
           name={e.name}
           description={e.description}
           image={e.image}
+          isFavorite={e.isFavorite}
+          onToggleFavorite={() => onToggleFavorite(e.id)}
         />
       ))}
     </div>
