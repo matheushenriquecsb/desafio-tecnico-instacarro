@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import icon from "../../assets/icon-favorite-card.svg";
 import "./CharacterCard.css";
-import { CharacterCardProps } from "../../types/components";
+import { CharacterCardProps } from "../../types/index";
 
 const CharacterCard = ({
   id,

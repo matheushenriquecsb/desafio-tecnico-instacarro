@@ -32,3 +32,28 @@ export const fetchCharactersList = async (offset: number) => {
 
   return response.data.data;
 };
+
+export const fetchCharacterById = async (id: string) => {
+  const response = await axios.get(BASE_URL, {
+    params: {
+      id,
+      ts,
+      apikey: PUBLIC_KEY,
+      hash,
+    },
+  });
+
+  return response.data.data;
+};
+
+export const fetchComicDetails = async (resourceURI: string) => {
+  const response = await axios.get(resourceURI, {
+    params: {
+      ts,
+      apikey: PUBLIC_KEY,
+      hash,
+    },
+  });
+
+  return response.data.data;
+};

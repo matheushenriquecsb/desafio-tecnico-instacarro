@@ -1,5 +1,5 @@
 import searchIcon from "../../assets/icon-search.png";
-import { SearchBarProps } from "../../types/components";
+import { SearchBarProps } from "../../types/index";
 import "./SearchBar.css";
 
 const SearchBar = ({ setCharacter, onSearch }: SearchBarProps) => {

@@ -1,4 +1,4 @@
-import { CharacterList, ICharacterCard } from "../../types/components";
+import { CharacterList, ICharacterCard } from "../../types/index";
 import CharacterCard from "../CharacterCard/CharacterCard";
 import "./CharacterList.css";
 

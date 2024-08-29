@@ -12,7 +12,7 @@ import {
   fetchCharacterByName,
   fetchCharactersList,
 } from "../../services/charactersApi";
-import { Character } from "../../types/components";
+import { Character } from "../../types/index";
 import "./Home.css";
 
 export const Home = () => {
@@ -20,12 +20,12 @@ export const Home = () => {
   const [character, setCharacter] = useState<string>("");
   const [characterData, setCharacterData] = useState<Character[]>([]);
   const [isSearchInput, setIsSearchInput] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage] = useState<number>(0);
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = () => {
     setIsSearchInput(true);
     fetchDataInput(character);
   };

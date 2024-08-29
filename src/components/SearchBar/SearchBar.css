@@ -1,7 +1,7 @@
 .search-form {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 .search-bar {
@@ -30,6 +30,6 @@
 
 .search-input::placeholder {
   color: rgba(249, 154, 153, 0.8);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
 }

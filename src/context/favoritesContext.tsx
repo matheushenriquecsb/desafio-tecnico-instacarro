@@ -1,6 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from "react";
-import { FavoritesContextType } from "../types/components";
+import { FavoritesContextType } from "../types/index";
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
   undefined

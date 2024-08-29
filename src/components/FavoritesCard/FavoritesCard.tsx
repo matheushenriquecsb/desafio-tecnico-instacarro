@@ -1,6 +1,6 @@
 import CharacterCard from "../CharacterCard/CharacterCard";
 import "./FavoritesCard.css";
-import { FavoriteCharactersProps } from "../../types/components";
+import { FavoriteCharactersProps } from "../../types/index";
 
 const FavoriteCharacters = ({
   characters,

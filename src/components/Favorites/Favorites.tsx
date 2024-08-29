@@ -1,8 +1,8 @@
 import "./Favorites.css";
 import favoriteIcon from "../../assets/icon-favorite.png";
-import { FilterProps } from "../../types/components";
+import { FavoritesProps } from "../../types/index";
 
-const Favorites = ({ totalCharacters, onToggleFavorites }: FilterProps) => {
+const Favorites = ({ totalCharacters, onToggleFavorites }: FavoritesProps) => {
   return (
     <div className="header-container">
       <p className="heroes-found">Encontrados {totalCharacters} heróis</p>
