@@ -1,0 +1,31 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.heroes-found {
+  font-size: 16px;
+  color: #c5c5c5;
+}
+
+.favorites-button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: #f99a99;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.favorite-icon {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.favorites-button span {
+  margin-left: 5px;
+}
