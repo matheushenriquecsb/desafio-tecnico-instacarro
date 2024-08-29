@@ -6,7 +6,7 @@
 }
 
 .header-background {
-  background-image: url("src/assets/background-header.png");
+  background-image: url("/background-header.png");
   background-size: cover;
   width: 180%;
   padding: 40px;

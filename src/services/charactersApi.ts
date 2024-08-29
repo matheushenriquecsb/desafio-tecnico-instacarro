@@ -47,7 +47,8 @@ export const fetchCharacterById = async (id: string) => {
 };
 
 export const fetchComicDetails = async (resourceURI: string) => {
-  const response = await axios.get(resourceURI, {
+  const secureResourceURI = resourceURI.replace(/^http:/, "https:");
+  const response = await axios.get(secureResourceURI, {
     params: {
       ts,
       apikey: PUBLIC_KEY,
